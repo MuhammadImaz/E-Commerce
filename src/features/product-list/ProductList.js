@@ -19,13 +19,7 @@ const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
   { name: "Price: High to Low", href: "#", current: false },
 ];
-const subCategories = [
-  { name: "Totes", href: "#" },
-  { name: "Backpacks", href: "#" },
-  { name: "Travel Bags", href: "#" },
-  { name: "Hip Bags", href: "#" },
-  { name: "Laptop Sleeves", href: "#" },
-];
+
 const filters = [
   {
     id: "color",
@@ -67,6 +61,16 @@ const filters = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+/*
+-> ...classes: This is the rest parameter syntax in JavaScript,
+   which allows the function to accept any number of arguments and stores them in the array-like classes parameter.
+
+-> classes.filter(Boolean): This part filters out any falsy values from the array of classes. It uses the Boolean function as the filter callback,
+ removing elements that evaluate to false, such as empty strings, null, undefined, false, etc.
+
+-> join(" "): The remaining truthy classes are then joined into a single string with spaces between them, 
+creating a space-separated list of class names. 
+*/
 
 const products = [
   {
@@ -91,6 +95,27 @@ export default function ProductList() {
     <div>
       <div className="bg-white">
         <div>
+          {/*
+          Transition: Transition is a component provided by the Headless UI library. It's used for creating transitions and animations. 
+          It handles the logic for transitioning between different states (e.g., showing and hiding elements) based on the show prop.
+
+Transition.Root: Transition.Root is a part of the Transition component and is used as the root container for the transition.
+ It takes the show prop and, based on its value, manages the entering and leaving states of its child components.
+
+Transition.Child: Transition.Child is a child component of Transition.Root.
+ It represents the transitioning child element and defines the transition properties, such as the easing function, duration, and 
+ opacity changes during enter and leave transitions.
+
+Dialog: Dialog is another component from the Headless UI library. 
+It provides the structure and behavior for creating accessible dialogs (pop-up windows). 
+In this case, it's used for a modal dialog that appears when mobileFiltersOpen is true.
+
+Fragment: Fragment is a React component that doesn't create a DOM element. 
+It's often used when you need to group multiple elements without introducing an additional wrapping element in the DOM. In this context, 
+it's used as the as prop value for Transition.Root and Transition.Child, 
+indicating that no extra DOM element should be created for these components.
+          
+          */}
           {/* Mobile filter dialog */}
           <Transition.Root show={mobileFiltersOpen} as={Fragment}>
             <Dialog
